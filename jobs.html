@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Careers at Radium Systems and Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#6e6ca6; --brand-2:#565490; --brand-soft:#ecebf5;
+    --sky:#7fb6d9; --sky-2:#5a97c4; --sky-soft:#e9f2f9;
+    --ink:#2e2d4a; --ink-2:#3b3a5e; --ink-soft:#54527a;
+    --paper:#f6f6fb; --surface:#ffffff; --surface-2:#faf9fd;
+    --line:#e6e4f0; --line-2:#eeedf6;
+    --accent:#6e6ca6; --accent-2:#565490; --accent-soft:#ecebf5;
+    --text:#25243f; --muted:#63627e; --faint:#9998b0;
+    --ok:#3a9b74; --ok-soft:#e6f4ee; --bad:#cf5069; --bad-soft:#f9e7ea;
+    --radius:14px; --radius-sm:10px; --shadow:0 1px 2px rgba(46,45,74,.05),0 14px 34px -20px rgba(46,45,74,.32);
+    --f-body:'Inter',system-ui,sans-serif; --f-head:'Space Grotesk','Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--paper);color:var(--text);}
+  body{font-family:var(--f-body);line-height:1.5;-webkit-font-smoothing:antialiased;
+       padding:0 16px calc(48px + env(safe-area-inset-bottom));min-height:100vh;}
+
+  header{max-width:720px;margin:0 auto;padding:26px 2px 8px;text-align:center;}
+  header h1,header .lede{margin-left:auto;margin-right:auto;}
+  .logo{height:112px;width:auto;display:block;margin:0 auto 6px;}
+  .brandline{display:flex;align-items:center;gap:11px;margin-bottom:20px;}
+  .mark{width:36px;height:36px;border-radius:10px;background:var(--ink);display:grid;place-items:center;flex:none;
+        box-shadow:0 6px 16px -8px rgba(20,27,46,.6);}
+  .mark span{width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #7d92f0, var(--accent));}
+  .brandline b{font-family:var(--f-head);font-weight:700;letter-spacing:.02em;font-size:15px;color:var(--ink);}
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-2);
+           display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+  .eyebrow::before{content:"";width:16px;height:1.5px;background:var(--accent);display:inline-block;}
+  h1{font-family:var(--f-head);font-size:27px;font-weight:700;letter-spacing:-.015em;color:var(--ink);margin-bottom:8px;line-height:1.15;}
+  .lede{color:var(--muted);font-size:15px;max-width:560px;}
+
+  main{max-width:720px;margin:0 auto;}
+  .controls{display:flex;gap:10px;margin:24px 0 6px;flex-wrap:wrap;}
+  .controls input,.controls select{font-family:inherit;font-size:15px;color:var(--text);background:var(--surface);
+    border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px;}
+  .controls input{flex:1;min-width:180px;}
+  .controls input:focus,.controls select:focus{outline:none;border-color:var(--accent);}
+  .count{font-size:12.5px;color:var(--muted);margin:14px 2px 4px;}
+
+  .job{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+       padding:20px 20px;margin-top:14px;transition:border-color .15s;}
+  .job:hover{border-color:#cfd7e6;}
+  .job h2{font-family:var(--f-head);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.01em;}
+  .client{font-size:13px;color:var(--accent-2);font-weight:600;margin-top:3px;}
+  .client.conf{color:var(--muted);font-weight:500;font-style:italic;}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;}
+  .tag{font-size:12px;font-weight:600;color:var(--ink-soft);background:var(--surface-2);
+       border:1px solid var(--line);border-radius:999px;padding:5px 11px;}
+  .tag.salary{background:var(--accent-soft);border-color:#d3ddf8;color:var(--accent-2);}
+  .summary{color:var(--muted);font-size:14px;margin-top:12px;}
+  .reqs{font-size:14px;color:var(--ink-soft);margin-top:12px;padding-top:12px;border-top:1px solid var(--line-2);
+        display:none;white-space:pre-wrap;}
+  .reqs.show{display:block;}
+  .job-actions{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+  .apply{font-family:inherit;font-size:14px;font-weight:700;border:0;background:linear-gradient(135deg,var(--brand),var(--sky));color:#fff;
+         border-radius:var(--radius-sm);padding:11px 22px;cursor:pointer;text-decoration:none;display:inline-block;}
+  .apply:hover{filter:brightness(.96);}
+  .ghost{font-family:inherit;font-size:13.5px;font-weight:600;border:1.5px solid var(--line);background:var(--surface);
+         color:var(--ink-soft);border-radius:var(--radius-sm);padding:10px 16px;cursor:pointer;}
+  .ghost:hover{border-color:var(--accent);color:var(--ink);}
+  .share-note{font-size:12px;color:var(--ok);font-weight:600;display:none;}
+  .share-note.show{display:inline;}
+
+  .state{text-align:center;color:var(--muted);padding:50px 16px;font-size:14.5px;}
+  .foot{text-align:center;color:var(--faint);font-size:11.5px;margin:30px auto 0;max-width:720px;line-height:1.6;}
+  .spin{width:20px;height:20px;border:2.5px solid var(--line);border-top-color:var(--accent);border-radius:50%;
+        display:inline-block;animation:sp .7s linear infinite;}
+  @keyframes sp{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="radium-logo.png" alt="Radium Systems and Solutions" />
+  <div class="eyebrow" style="justify-content:center">Open roles</div>
+  <h1>Careers &amp; opportunities</h1>
+  <p class="lede">We place talented people with great companies across Kuwait. Browse current openings and apply in a minute — one application keeps you on our radar for future roles too.</p>
+</header>
+
+<main>
+  <div class="controls">
+    <input id="search" type="text" placeholder="Search roles…" autocomplete="off" />
+    <select id="dept"><option value="">All departments</option></select>
+    <select id="loc"><option value="">All locations</option></select>
+  </div>
+  <div class="count" id="count"></div>
+  <div id="list"><div class="state"><span class="spin"></span></div></div>
+</main>
+
+<p class="foot">Radium Systems and Solutions · Recruitment &amp; staffing · Kuwait</p>
+
+<script>
+/* Radium's Apps Script Web App URL (same one the Radium form posts to). */
+const API  = "PASTE_RADIUM_EXEC_URL";
+/* Radium's registration form URL (your Radium domain). */
+const FORM = "PASTE_RADIUM_FORM_URL";
+
+const $  = s => document.querySelector(s);
+const esc = s => String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let JOBS = [];
+
+function field(j, name){
+  for (const k in j){ if (k.toLowerCase().trim() === name) return j[k]; }
+  for (const k in j){ if (k.toLowerCase().includes(name)) return j[k]; }
+  return "";
+}
+
+async function load(){
+  try{
+    const res = await fetch(API + "?type=jobs");
+    const data = await res.json();
+    JOBS = (data.jobs || []).map(j => ({
+      id: String(field(j,"job id")||"").trim(),
+      title: String(field(j,"title")||"").trim(),
+      client: String(field(j,"client")||"").trim(),
+      conf: j["_confidential"] === true,
+      dept: String(field(j,"department")||"").trim(),
+      loc: String(field(j,"location")||"").trim(),
+      type: String(field(j,"type")||"").trim(),
+      salary: String(field(j,"salary")||"").trim(),
+      summary: String(field(j,"summary")||"").trim(),
+      reqs: String(field(j,"requirements")||"").trim()
+    })).filter(j => j.title);
+    fillFilters(); render();
+  }catch(e){
+    $("#list").innerHTML = '<div class="state">Couldn\'t load openings right now. Please try again shortly.</div>';
+  }
+}
+
+function fillFilters(){
+  const depts=[...new Set(JOBS.map(j=>j.dept).filter(Boolean))].sort();
+  const locs =[...new Set(JOBS.map(j=>j.loc).filter(Boolean))].sort();
+  depts.forEach(d=>{const o=document.createElement("option");o.value=d;o.textContent=d;$("#dept").appendChild(o);});
+  locs.forEach(l=>{const o=document.createElement("option");o.value=l;o.textContent=l;$("#loc").appendChild(o);});
+}
+
+function render(){
+  const q=$("#search").value.toLowerCase().trim(), d=$("#dept").value, l=$("#loc").value;
+  const shown=JOBS.filter(j=>{
+    const hay=(j.title+" "+j.client+" "+j.dept+" "+j.loc+" "+j.summary).toLowerCase();
+    return (!q||hay.includes(q)) && (!d||j.dept===d) && (!l||j.loc===l);
+  });
+  $("#count").textContent = shown.length + (shown.length===1?" open role":" open roles");
+  if(!shown.length){ $("#list").innerHTML='<div class="state">No roles match your search right now.</div>'; return; }
+  $("#list").innerHTML = shown.map(j=>{
+    const applyUrl = FORM + "?job=" + encodeURIComponent(j.id) + "&position=" + encodeURIComponent(j.title);
+    const shareUrl = location.origin + location.pathname + "?job=" + encodeURIComponent(j.id);
+    const clientLine = j.conf
+      ? `<div class="client conf">Confidential client</div>`
+      : (j.client ? `<div class="client">${esc(j.client)}</div>` : "");
+    return `<div class="job" id="job_${esc(j.id)}">
+      <h2>${esc(j.title)}</h2>
+      ${clientLine}
+      <div class="tags">
+        ${j.dept?`<span class="tag">${esc(j.dept)}</span>`:""}
+        ${j.loc?`<span class="tag">${esc(j.loc)}</span>`:""}
+        ${j.type?`<span class="tag">${esc(j.type)}</span>`:""}
+        ${j.salary?`<span class="tag salary">${esc(j.salary)}</span>`:""}
+      </div>
+      ${j.summary?`<div class="summary">${esc(j.summary)}</div>`:""}
+      ${j.reqs?`<div class="reqs" id="reqs_${esc(j.id)}">${esc(j.reqs)}</div>`:""}
+      <div class="job-actions">
+        <a class="apply" href="${applyUrl}">Apply now</a>
+        ${j.reqs?`<button class="ghost" data-req="${esc(j.id)}">View details</button>`:""}
+        <button class="ghost" data-share="${esc(shareUrl)}">Share</button>
+        <span class="share-note" id="sn_${esc(j.id)}">Link copied ✓</span>
+      </div>
+    </div>`;
+  }).join("");
+
+  document.querySelectorAll("[data-req]").forEach(b=>b.onclick=()=>{
+    const box=$("#reqs_"+CSS.escape(b.dataset.req)); box.classList.toggle("show");
+    b.textContent=box.classList.contains("show")?"Hide details":"View details";
+  });
+  document.querySelectorAll("[data-share]").forEach(b=>b.onclick=()=>{
+    navigator.clipboard.writeText(b.dataset.share).then(()=>{
+      const id=b.closest(".job").id.replace("job_","");
+      const n=$("#sn_"+CSS.escape(id)); if(n){n.classList.add("show");setTimeout(()=>n.classList.remove("show"),1800);}
+    });
+  });
+
+  const target=new URLSearchParams(location.search).get("job");
+  if(target){ const el=$("#job_"+CSS.escape(target)); if(el){el.scrollIntoView({behavior:"smooth",block:"center"});el.style.borderColor="var(--accent)";} }
+}
+
+$("#search").oninput=render; $("#dept").onchange=render; $("#loc").onchange=render;
+load();
+</script>
+</body>
+</html>
