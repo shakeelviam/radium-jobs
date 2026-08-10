@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Radium Systems and Solutions — Candidate Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#6e6ca6; --brand-2:#565490; --brand-soft:#ecebf5;
+    --sky:#7fb6d9; --sky-2:#5a97c4; --sky-soft:#e9f2f9;
+    --ink:#2e2d4a; --ink-2:#3b3a5e; --ink-soft:#54527a;
+    --paper:#f6f6fb; --surface:#ffffff; --surface-2:#faf9fd;
+    --line:#e6e4f0; --line-2:#eeedf6;
+    --accent:#6e6ca6; --accent-2:#565490; --accent-soft:#ecebf5;
+    --text:#25243f; --muted:#63627e; --faint:#9998b0;
+    --ok:#3a9b74; --ok-soft:#e6f4ee; --bad:#cf5069; --bad-soft:#f9e7ea;
+    --radius:14px; --radius-sm:10px; --shadow:0 1px 2px rgba(46,45,74,.05),0 14px 34px -20px rgba(46,45,74,.32);
+    --f-body:'Inter',system-ui,sans-serif; --f-head:'Space Grotesk','Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--paper);color:var(--text);}
+  body{font-family:var(--f-body);line-height:1.5;-webkit-font-smoothing:antialiased;
+       padding:0 16px calc(40px + env(safe-area-inset-bottom));min-height:100vh;}
+
+  header{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:11px;padding:18px 2px 14px;}
+  .logo{height:60px;width:auto;display:block;}
+  .mark span{width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #7d92f0, var(--accent));}
+  .brand b{font-family:var(--f-head);font-weight:700;letter-spacing:.02em;font-size:15px;color:var(--ink);display:block;line-height:1.1;}
+  .brand small{color:var(--muted);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;}
+
+  main{max-width:560px;margin:0 auto;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px 24px;}
+
+  .eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-2);
+           display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+  .eyebrow::before{content:"";width:16px;height:1.5px;background:var(--accent);display:inline-block;}
+  h1{font-family:var(--f-head);font-size:22px;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px;line-height:1.2;}
+  .lede{color:var(--muted);font-size:14px;margin-bottom:18px;}
+  .jobtag{display:none;background:var(--accent-soft);border:1px solid #d3ddf8;border-radius:var(--radius-sm);
+          padding:11px 13px;font-size:13px;color:var(--accent-2);margin-bottom:20px;}
+  .jobtag.show{display:block;} .jobtag b{font-weight:700;}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:7px;}
+  .req{color:var(--bad);}
+  input,select{width:100%;font-family:inherit;font-size:16px;color:var(--text);background:var(--surface-2);
+        border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:13px 14px;transition:border-color .15s,background .15s;}
+  input::placeholder{color:var(--faint);}
+  input:focus,select:focus{outline:none;border-color:var(--accent);background:var(--surface);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:420px){.row2{grid-template-columns:1fr;}}
+  .field.invalid input,.field.invalid select{border-color:var(--bad);}
+  .err{font-size:12px;color:var(--bad);margin-top:6px;display:none;}
+  .field.invalid .err{display:block;}
+  .hint{font-size:11.5px;color:var(--faint);margin-top:6px;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chiptog{font-size:13.5px;font-weight:600;color:var(--ink-soft);background:var(--surface-2);
+           border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;cursor:pointer;user-select:none;transition:all .12s;}
+  .chiptog.on{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+  .drop{border:1.5px dashed var(--line);border-radius:var(--radius-sm);background:var(--surface-2);
+        padding:16px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;}
+  .drop:hover{border-color:var(--accent);background:var(--accent-soft);}
+  .drop svg{color:var(--accent-2);margin-bottom:6px;}
+  .drop b{display:block;font-size:13.5px;color:var(--ink);font-weight:600;}
+  .drop span{font-size:12px;color:var(--muted);}
+  .drop.has{border-style:solid;border-color:var(--ok);background:var(--ok-soft);text-align:left;display:flex;align-items:center;gap:12px;}
+  .drop.has .thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;flex:none;background:#fff;border:1px solid var(--line);}
+  .drop.has .fx{min-width:0;flex:1;}
+  .drop.has .fx b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .drop.has .clear{background:none;border:0;color:var(--ink-soft);font-size:19px;cursor:pointer;padding:4px 8px;font-family:inherit;}
+
+  .banner{border-radius:var(--radius-sm);padding:13px 15px;font-size:13.5px;margin-bottom:16px;display:none;}
+  .banner.show{display:block;} .banner.bad{background:var(--bad-soft);color:var(--bad);}
+
+  button.btn{width:100%;font-family:var(--f-body);font-size:15px;font-weight:700;border-radius:var(--radius-sm);
+             padding:15px;cursor:pointer;border:0;background:linear-gradient(135deg,var(--brand),var(--sky));color:#fff;margin-top:8px;transition:transform .06s,background .15s;}
+  button.btn:hover{filter:brightness(.96);} button.btn:active{transform:translateY(1px);}
+  button.btn[disabled]{opacity:.55;cursor:not-allowed;}
+  .spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;
+        display:inline-block;vertical-align:-3px;margin-right:8px;animation:sp .7s linear infinite;}
+  @keyframes sp{to{transform:rotate(360deg);}}
+
+  .done{text-align:center;padding:24px 4px;}
+  .done .tick{width:64px;height:64px;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;margin:0 auto 18px;}
+  .done h1{color:var(--ink);}
+  .foot{text-align:center;color:var(--faint);font-size:11.5px;margin:18px auto 0;max-width:560px;line-height:1.6;}
+  .visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  .sec{margin:22px 0 12px;padding-top:16px;border-top:1px solid var(--line-2);font-size:11px;font-weight:700;
+       letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);}
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="radium-logo.png" alt="Radium Systems and Solutions" />
+</header>
+
+<main>
+  <div class="card">
+    <section id="formCard">
+      <div class="eyebrow">Candidate registration</div>
+      <h1>Register your details</h1>
+      <p class="lede">Tell us about yourself and attach your CV. It takes about a minute — our team will be in touch about suitable roles.</p>
+
+      <div class="jobtag" id="jobtag"></div>
+      <div class="banner bad" id="err"></div>
+
+      <div class="field" id="f_name">
+        <label>Full name <span class="req">*</span></label>
+        <input id="name" type="text" autocomplete="name" placeholder="Your full name" />
+        <div class="err">Please enter your name.</div>
+      </div>
+
+      <div class="field" id="f_mobile">
+        <label>Mobile / WhatsApp <span class="req">*</span></label>
+        <input id="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 5xxxxxxx" />
+        <div class="err">Please enter a contact number.</div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Nationality</label>
+          <input id="nationality" list="nats" placeholder="Start typing…" autocomplete="off" />
+          <datalist id="nats">
+            <option>Afghan</option><option>Albanian</option><option>Algerian</option><option>American</option>
+            <option>Andorran</option><option>Angolan</option><option>Antiguan</option><option>Argentine</option>
+            <option>Armenian</option><option>Australian</option><option>Austrian</option><option>Azerbaijani</option>
+            <option>Bahamian</option><option>Bahraini</option><option>Bangladeshi</option><option>Barbadian</option>
+            <option>Belarusian</option><option>Belgian</option><option>Belizean</option><option>Beninese</option>
+            <option>Bhutanese</option><option>Bolivian</option><option>Bosnian</option><option>Botswanan</option>
+            <option>Brazilian</option><option>British</option><option>Bruneian</option><option>Bulgarian</option>
+            <option>Burkinabé</option><option>Burmese</option><option>Burundian</option><option>Cambodian</option>
+            <option>Cameroonian</option><option>Canadian</option><option>Cape Verdean</option><option>Central African</option>
+            <option>Chadian</option><option>Chilean</option><option>Chinese</option><option>Colombian</option>
+            <option>Comoran</option><option>Congolese</option><option>Costa Rican</option><option>Croatian</option>
+            <option>Cuban</option><option>Cypriot</option><option>Czech</option><option>Danish</option>
+            <option>Djiboutian</option><option>Dominican</option><option>Dutch</option><option>East Timorese</option>
+            <option>Ecuadorian</option><option>Egyptian</option><option>Emirati</option><option>Equatorial Guinean</option>
+            <option>Eritrean</option><option>Estonian</option><option>Ethiopian</option><option>Fijian</option>
+            <option>Filipino</option><option>Finnish</option><option>French</option><option>Gabonese</option>
+            <option>Gambian</option><option>Georgian</option><option>German</option><option>Ghanaian</option>
+            <option>Greek</option><option>Grenadian</option><option>Guatemalan</option><option>Guinean</option>
+            <option>Guinea-Bissauan</option><option>Guyanese</option><option>Haitian</option><option>Honduran</option>
+            <option>Hungarian</option><option>Icelandic</option><option>Indian</option><option>Indonesian</option>
+            <option>Iranian</option><option>Iraqi</option><option>Irish</option><option>Israeli</option>
+            <option>Italian</option><option>Ivorian</option><option>Jamaican</option><option>Japanese</option>
+            <option>Jordanian</option><option>Kazakh</option><option>Kenyan</option><option>Kiribati</option>
+            <option>Kosovar</option><option>Kuwaiti</option><option>Kyrgyz</option><option>Lao</option>
+            <option>Latvian</option><option>Lebanese</option><option>Basotho</option><option>Liberian</option>
+            <option>Libyan</option><option>Liechtensteiner</option><option>Lithuanian</option><option>Luxembourgish</option>
+            <option>Malagasy</option><option>Malawian</option><option>Malaysian</option><option>Maldivian</option>
+            <option>Malian</option><option>Maltese</option><option>Marshallese</option><option>Mauritanian</option>
+            <option>Mauritian</option><option>Mexican</option><option>Micronesian</option><option>Moldovan</option>
+            <option>Monégasque</option><option>Mongolian</option><option>Montenegrin</option><option>Moroccan</option>
+            <option>Mozambican</option><option>Namibian</option><option>Nauruan</option><option>Nepali</option>
+            <option>New Zealander</option><option>Nicaraguan</option><option>Nigerien</option><option>Nigerian</option>
+            <option>North Korean</option><option>North Macedonian</option><option>Norwegian</option><option>Omani</option>
+            <option>Pakistani</option><option>Palauan</option><option>Palestinian</option><option>Panamanian</option>
+            <option>Papua New Guinean</option><option>Paraguayan</option><option>Peruvian</option><option>Polish</option>
+            <option>Portuguese</option><option>Qatari</option><option>Romanian</option><option>Russian</option>
+            <option>Rwandan</option><option>Saint Lucian</option><option>Salvadoran</option><option>Samoan</option>
+            <option>San Marinese</option><option>São Toméan</option><option>Saudi</option><option>Senegalese</option>
+            <option>Serbian</option><option>Seychellois</option><option>Sierra Leonean</option><option>Singaporean</option>
+            <option>Slovak</option><option>Slovenian</option><option>Solomon Islander</option><option>Somali</option>
+            <option>South African</option><option>South Korean</option><option>South Sudanese</option><option>Spanish</option>
+            <option>Sri Lankan</option><option>Sudanese</option><option>Surinamese</option><option>Swazi</option>
+            <option>Swedish</option><option>Swiss</option><option>Syrian</option><option>Taiwanese</option>
+            <option>Tajik</option><option>Tanzanian</option><option>Thai</option><option>Togolese</option>
+            <option>Tongan</option><option>Trinidadian</option><option>Tunisian</option><option>Turkish</option>
+            <option>Turkmen</option><option>Tuvaluan</option><option>Ugandan</option><option>Ukrainian</option>
+            <option>Uruguayan</option><option>Uzbek</option><option>Vanuatuan</option><option>Venezuelan</option>
+            <option>Vietnamese</option><option>Yemeni</option><option>Zambian</option><option>Zimbabwean</option>
+          </datalist>
+        </div>
+        <div class="field">
+          <label>Position applied for</label>
+          <input id="position" type="text" placeholder="Type the position…" autocomplete="off" />
+          <div class="hint">Type any role you're applying for.</div>
+        </div>
+      </div>
+
+      <div class="field" id="f_visa">
+        <label>Visa status <span class="req">*</span></label>
+        <select id="visa">
+          <option value="" disabled selected>Select…</option>
+          <option>Article 18 – transferable</option>
+          <option>Article 18 – non-transferable</option>
+          <option>Article 22 (dependent)</option>
+          <option>Article 20 (domestic)</option>
+          <option>Visit visa</option>
+          <option>Not currently in Kuwait</option>
+        </select>
+        <div class="err">Please choose your visa status.</div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Years of experience</label>
+          <input id="experience" type="number" min="0" max="60" inputmode="numeric" placeholder="e.g. 3" />
+        </div>
+        <div class="field">
+          <label>Currently employed?</label>
+          <select id="employed">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes</option><option>No</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Available to start</label>
+          <input id="availability" list="avail" placeholder="e.g. Immediately" />
+          <datalist id="avail"><option>Immediately</option><option>1 week</option><option>2 weeks</option><option>1 month</option></datalist>
+        </div>
+        <div class="field">
+          <label>Expected salary (KD)</label>
+          <input id="salary" type="number" min="0" inputmode="numeric" placeholder="e.g. 500" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Languages</label>
+        <div class="chips" id="langs">
+          <div class="chiptog" data-v="Arabic">Arabic</div>
+          <div class="chiptog" data-v="English">English</div>
+          <div class="chiptog" data-v="Hindi/Urdu">Hindi / Urdu</div>
+          <div class="chiptog" data-v="Nepali">Nepali</div>
+          <div class="chiptog" data-v="Tagalog">Tagalog</div>
+          <div class="chiptog" data-v="Other">Other</div>
+        </div>
+      </div>
+
+      <div class="sec">Attachments (optional)</div>
+      <div class="row2">
+        <div class="field">
+          <label>Photo</label>
+          <div class="drop" id="dropPhoto" role="button" tabindex="0">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+            <b>Add photo</b><span>A clear headshot</span>
+          </div>
+          <input id="filePhoto" type="file" accept="image/*" class="visually-hidden" />
+        </div>
+        <div class="field">
+          <label>CV</label>
+          <div class="drop" id="dropCv" role="button" tabindex="0">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            <b>Add CV</b><span>PDF, image, or Word</span>
+          </div>
+          <input id="fileCv" type="file" accept="image/*,application/pdf,.doc,.docx" class="visually-hidden" />
+        </div>
+      </div>
+
+      <button class="btn" type="button" id="submit">Submit application</button>
+      <input type="text" id="website" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    </section>
+
+    <section id="doneCard" style="display:none">
+      <div class="done">
+        <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h1>Application received</h1>
+        <p class="lede">Thank you. Our team will review your details and be in touch about suitable roles.</p>
+        <button class="btn" type="button" id="again" style="max-width:280px;margin:8px auto 0;">Submit another application</button>
+      </div>
+    </section>
+  </div>
+  <p class="foot">Radium Systems and Solutions · Recruitment &amp; staffing</p>
+</main>
+
+<script>
+/* 1) PASTE Radium's /exec URL after deploying its Code.gs   2) TOKEN must equal its SHARED_SECRET */
+const API   = "PASTE_RADIUM_EXEC_URL";
+const TOKEN = "rdm7Kq2ZpV9sXe4LtB1yNfH6cUwGmA3oQ0iErTn";
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+let photoData = null, cvData = null;
+
+/* Deep-link from the careers board: prefill position, remember Job ID, show a banner */
+const _p = new URLSearchParams(location.search);
+const JOB_ID = _p.get("job") || "";
+if (_p.get("position")){ $("#position").value = _p.get("position");
+  const t=$("#jobtag"); t.innerHTML = "You're applying for: <b>"+_p.get("position").replace(/[<>&]/g,"")+"</b>"; t.classList.add("show"); }
+
+/* language chips */
+$$("#langs .chiptog").forEach(c => c.onclick = () => c.classList.toggle("on"));
+
+/* uploads */
+function readData(f){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(f); }); }
+function compress(f){ return new Promise((res,rej)=>{ const r=new FileReader();
+  r.onload=()=>{ const img=new Image(); img.onload=()=>{ const max=1400; let w=img.width,h=img.height;
+    if(w>max||h>max){ const k=Math.min(max/w,max/h); w=Math.round(w*k); h=Math.round(h*k); }
+    const cv=document.createElement("canvas"); cv.width=w; cv.height=h; cv.getContext("2d").drawImage(img,0,0,w,h);
+    res(cv.toDataURL("image/jpeg",0.82)); }; img.onerror=rej; img.src=r.result; };
+  r.onerror=rej; r.readAsDataURL(f); }); }
+function esc(s){ return String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function makeUpload(dropSel, inputSel, setState, emptyHTML){
+  const drop=$(dropSel), input=$(inputSel);
+  drop.onclick=()=>input.click();
+  drop.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();input.click();} };
+  input.onchange=async e=>{
+    const f=e.target.files[0]; if(!f) return;
+    if(f.size>10*1024*1024){ alert("That file is too large. Please use one under 10 MB."); e.target.value=""; return; }
+    try{
+      let dataUrl, mime=f.type, name=f.name;
+      if(f.type.startsWith("image/")){ dataUrl=await compress(f); mime="image/jpeg"; name=(f.name.replace(/\.\w+$/,"")||"file")+".jpg"; }
+      else{ dataUrl=await readData(f); }
+      const data={ name, mimeType:mime, data:dataUrl.split(",")[1] }; setState(data);
+      const thumb = mime.startsWith("image/") ? '<img class="thumb" src="'+dataUrl+'" alt="">'
+        : '<div class="thumb" style="display:grid;place-items:center;font-weight:700;color:var(--ink-soft)">'+(mime.indexOf("pdf")>-1?"PDF":"DOC")+'</div>';
+      drop.className="drop has";
+      drop.innerHTML=thumb+'<div class="fx"><b>'+esc(name)+'</b><span>'+Math.max(1,Math.round((data.data.length*3/4)/1024))+' KB · Attached</span></div><button type="button" class="clear" aria-label="Remove">×</button>';
+      drop.querySelector(".clear").onclick=ev=>{ ev.stopPropagation(); setState(null); drop.className="drop"; drop.innerHTML=emptyHTML; input.value=""; makeUpload(dropSel,inputSel,setState,emptyHTML); };
+    }catch(err){ alert("Couldn't read that file. Please try another."); }
+  };
+}
+const PHOTO_EMPTY='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg><b>Add photo</b><span>A clear headshot</span>';
+const CV_EMPTY='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><b>Add CV</b><span>PDF, image, or Word</span>';
+makeUpload("#dropPhoto","#filePhoto",d=>photoData=d,PHOTO_EMPTY);
+makeUpload("#dropCv","#fileCv",d=>cvData=d,CV_EMPTY);
+
+function val(id){ return $("#"+id).value.trim(); }
+function bad(id,on){ $("#f_"+id).classList.toggle("invalid",on); }
+["name","mobile"].forEach(id=>$("#"+id).addEventListener("input",()=>bad(id,false)));
+$("#visa").addEventListener("change",()=>bad("visa",false));
+
+$("#submit").onclick=async()=>{
+  $("#err").classList.remove("show");
+  let ok=true;
+  if(!val("name")){ bad("name",true); ok=false; }
+  if(!val("mobile")){ bad("mobile",true); ok=false; }
+  if(!$("#visa").value){ bad("visa",true); ok=false; }
+  if(!ok){ window.scrollTo({top:0,behavior:"smooth"}); return; }
+
+  const languages=[...$$("#langs .chiptog.on")].map(c=>c.getAttribute("data-v"));
+  const btn=$("#submit"); btn.disabled=true; btn.innerHTML='<span class="spin"></span>Sending…';
+  const payload={ token:TOKEN, website:val("website"), jobId:JOB_ID,
+    name:val("name"), mobile:val("mobile"), nationality:val("nationality"), position:val("position"),
+    visa:$("#visa").value, experience:val("experience"), employed:$("#employed").value,
+    availability:val("availability"), salary:val("salary"), languages,
+    photo:photoData, cv:cvData };
+  try{
+    const res=await fetch(API,{ method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(payload) });
+    const data=await res.json();
+    if(!data.ok) throw new Error(data.error||"failed");
+    $("#formCard").style.display="none"; $("#doneCard").style.display="block"; window.scrollTo({top:0,behavior:"smooth"});
+  }catch(e){
+    $("#err").textContent=("Something went wrong. Please try again. "+(e.message||"")).trim();
+    $("#err").classList.add("show"); window.scrollTo({top:0,behavior:"smooth"});
+  }finally{ btn.disabled=false; btn.textContent="Submit application"; }
+};
+
+$("#again").onclick=()=>{
+  ["name","mobile","nationality","position","experience","availability","salary","website"].forEach(id=>$("#"+id).value="");
+  $("#visa").value=""; $("#employed").value="";
+  $$("#langs .chiptog.on").forEach(c=>c.classList.remove("on"));
+  photoData=null; cvData=null;
+  $("#dropPhoto").className="drop"; $("#dropPhoto").innerHTML=PHOTO_EMPTY; makeUpload("#dropPhoto","#filePhoto",d=>photoData=d,PHOTO_EMPTY);
+  $("#dropCv").className="drop"; $("#dropCv").innerHTML=CV_EMPTY; makeUpload("#dropCv","#fileCv",d=>cvData=d,CV_EMPTY);
+  $("#doneCard").style.display="none"; $("#formCard").style.display="block";
+};
+</script>
+</body>
+</html>
